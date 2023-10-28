@@ -2,6 +2,7 @@ import { LegacyRef, PropsWithChildren, forwardRef } from 'react';
 import { Link } from './link';
 import { Text } from './text';
 import { Title } from './title';
+import { Pixel } from './pixel';
 
 type Props = PropsWithChildren<{
   title?: string;
@@ -37,12 +38,7 @@ export const App = forwardRef<HTMLBodyElement, Props>(
           <Text>
             &copy; {new Date().getFullYear()} {title}. All rights reserved.
           </Text>
-          <img
-            style={{
-              display: 'none',
-            }}
-            src={`https://v.fish.lgbt/pixel.gif?id=${title.toLowerCase()}.fish.lgbt`}
-          />
+          <Pixel />
         </footer>
       </body>
       <script src="https://fish.lgbt/assets/js/htmx.org@1.9.4.min.js"></script>

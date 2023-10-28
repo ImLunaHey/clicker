@@ -3,15 +3,7 @@ import { NotFound } from './components/not-found';
 import { App } from './components/app';
 import { health } from 'well-known-health';
 import { PropsWithChildren } from 'react';
-
-const Pixel: React.FC = () => (
-  <img
-    style={{
-      display: 'none',
-    }}
-    src={`https://v.fish.lgbt/pixel.gif?id=clicker.fish.lgbt`}
-  />
-);
+import { Pixel } from './components/pixel';
 
 const Shell: React.FC<PropsWithChildren> = ({ children }) => (
   <App title="Clicker" description="An idle clicking game">

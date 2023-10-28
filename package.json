@@ -16,6 +16,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "dedent": "^1.5.1",
     "react-dom": "^18.2.0",
     "well-known-health": "^0.0.1"
   }
