@@ -38,6 +38,8 @@ const GameOver = () => (
   </>
 );
 
+const randomItem = <T extends unknown>(items: T[]): T => items[Math.floor(Math.random() * items.length)];
+
 const Game: React.FC = () => {
   if (gameOver) return <GameOver />;
   return (
@@ -50,7 +52,6 @@ const Game: React.FC = () => {
         <button
           type="button"
           className="inline-flex px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500"
-          disabled={false}
           hx-post="/up"
           hx-swap="innerHTML"
           hx-target="form"
@@ -60,7 +61,15 @@ const Game: React.FC = () => {
         <button
           type="button"
           className="inline-flex px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500"
-          disabled={false}
+          hx-post={'/' + randomItem(['up', 'down', 'reset'])}
+          hx-swap="innerHTML"
+          hx-target="form"
+        >
+          👀
+        </button>
+        <button
+          type="button"
+          className="inline-flex px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500"
           hx-post="/down"
           hx-swap="innerHTML"
           hx-target="form"
@@ -128,6 +137,26 @@ const server = Bun.serve({
       if (score < 0) {
         gameOver = true;
       }
+      return new Response(
+        '<!doctype html>' +
+          renderToStaticMarkup(
+            <>
+              <HighScore />
+              <Game />
+              <Pixel />
+            </>,
+          ),
+        {
+          headers: {
+            'Content-Type': 'text/html',
+          },
+        },
+      );
+    }
+
+    if (url.pathname === '/reset') {
+      // Increment the score
+      score = 0;
       return new Response(
         '<!doctype html>' +
           renderToStaticMarkup(
