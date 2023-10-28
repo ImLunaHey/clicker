@@ -1,0 +1,21 @@
+{
+  "name": "clicker",
+  "module": "src/index.tsx",
+  "type": "module",
+  "scripts": {
+    "start": "bun --revision && bun --smol run src/index.tsx",
+    "dev": "bun run --watch src/index.tsx"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "react-dom": "^18.2.0",
+    "well-known-health": "^0.0.1"
+  }
+}
