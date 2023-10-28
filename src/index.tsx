@@ -109,11 +109,14 @@ const server = Bun.serve({
     }
 
     if (url.pathname === '/up') {
-      // Increment the score
-      score++;
+      // Increment the score by n where n is the columns for example 10 would be 1 and 100 would be 2
+      score += Math.ceil(Math.log10(score + 1)) || 1;
+
+      // Increment the high score
       if (score > highScore) {
         highScore = score;
       }
+
       return new Response(
         '<!doctype html>' +
           renderToStaticMarkup(
